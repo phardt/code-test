@@ -6,7 +6,7 @@ function handleDelete(id) {
             window.location.href = "/projetos"
         },
         error: function(request, msg, error) {
-            console.log(request,msg, error);
+            alert(`registro ${id} não pode ser excluido.`)
         }
     });
 }

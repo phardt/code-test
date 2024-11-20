@@ -98,6 +98,6 @@
                 </div>                    
             </div>
         </div>
-        <script src="/static/controllers/form-projeto-controller.js"></script>
+        <script src="/static/controllers/projetos-form-controller.js"></script>
     </body>
 </html>
