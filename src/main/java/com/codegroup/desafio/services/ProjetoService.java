@@ -21,7 +21,7 @@ public class ProjetoService {
     private static final String MODEL_RISCO = "risco";
     private static final String MODEL_GERENTES = "gerentes";
     private static final String MODEL_PROJETO = "projeto";
-
+    private static final String MODEL_PESSOAS = "pessoas";
 
     private final ProjetoRepository projetoRepository;
     private final PessoaService pessoaService;
@@ -81,11 +81,11 @@ public class ProjetoService {
         model.addAttribute(MODEL_GERENTES, this.getPessoas());
     }
 
-    public void updateProjeto(final Long id, final Projeto projeto) {
-        this.projetoRepository.findById(id).map(item -> {
+    public Projeto updateProjeto(final Long id, final Projeto projeto) {
+        return this.projetoRepository.findById(id).map(item -> {
             projeto.setId(id);
             return this.projetoRepository.save(projeto);
-        });
+        }).orElseThrow();
     }
 
     public void deleteProjeto(final Long id) {
@@ -99,8 +99,8 @@ public class ProjetoService {
         final List<Pessoa> pessoas = this.pessoaService.getAllFuncionarios();
         final Projeto projeto = this.getProjeto(id);
         projeto.getMembros().forEach(pessoas::remove);
-        modelMap.addAttribute("projeto", projeto);
-        modelMap.addAttribute("pessoas", pessoas);
+        modelMap.addAttribute(MODEL_PROJETO, projeto);
+        modelMap.addAttribute(MODEL_PESSOAS, pessoas);
     }
 
     public void addMembro(final ProjetoMembroDto membro) {

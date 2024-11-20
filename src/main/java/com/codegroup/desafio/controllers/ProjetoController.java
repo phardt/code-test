@@ -21,6 +21,7 @@ import java.util.List;
 public class ProjetoController {
 
     private final ProjetoService projetoService;
+    private static final String VIEW_PROJETO = "projetos/projeto";
 
     @Autowired
     public ProjetoController(ProjetoService projetoService) {
@@ -36,7 +37,7 @@ public class ProjetoController {
             return new ModelAndView("redirect:/projetos", model);
         }
 
-        return new ModelAndView("projetos/projeto", model);
+        return new ModelAndView(VIEW_PROJETO, model);
     }
 
     @PostMapping("/projeto/{id}")
@@ -55,13 +56,13 @@ public class ProjetoController {
     @GetMapping("/projeto")
     public ModelAndView getProjetoForm(final ModelMap model) {
         this.projetoService.buildFormModel(model, null);
-        return new ModelAndView("projetos/projeto", model);
+        return new ModelAndView(VIEW_PROJETO, model);
     }
 
     @GetMapping("/projeto/{id}")
     public ModelAndView getProjetoId(final ModelMap model, @PathVariable("id") final Long id) {
         this.projetoService.buildFormModel(model, id);
-        return new ModelAndView("projetos/projeto", model);
+        return new ModelAndView(VIEW_PROJETO, model);
     }
 
     @GetMapping()

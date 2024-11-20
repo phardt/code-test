@@ -9,6 +9,8 @@ import java.util.stream.Stream;
 
 public class Helper {
 
+    private static final String MODEL_ERRORS = "errors";
+
     private Helper() {
     }
 
@@ -25,7 +27,7 @@ public class Helper {
                                        final String modelName){
         if (bindingResult.hasErrors()) {
             modelMap.addAttribute(modelName, model);
-            modelMap.addAttribute("errors", bindingResult);
+            modelMap.addAttribute(MODEL_ERRORS, bindingResult);
             return false;
         }
 

@@ -1,8 +1,5 @@
 package com.codegroup.desafio.constants;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 public enum Status {
     EM_ANALISE("Em Análise"),
     ANALISE("Análise"),
@@ -14,18 +11,18 @@ public enum Status {
     ENCERRADO("Encerrado"),
     CANCELADO("Cancelado");
 
-    private String status;
+    private String description;
 
     Status(String status) {
-        this.status = status;
+        this.description = status;
     }
 
-    public String getStatus(){
-        return this.status;
+    public String getDescription(){
+        return this.description;
     }
 
     @Override
     public String toString() {
-        return getStatus();
+        return getDescription();
     }
 }
