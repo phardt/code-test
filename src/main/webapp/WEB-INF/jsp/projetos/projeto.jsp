@@ -1,6 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 
 <html>
     <head>
@@ -89,9 +90,46 @@
                             </div>
                         </div>
                     </div>
-                </div>              
+                </div>     
+
+                <div class="row">
+                    <div class="col">
+                        
+                        <div class="accordion" id="accordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                    Membros do projeto
+                                </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                                    <div class="accordion-body">
+                                        <ul id="member-project" class="list-group">
+                                            <c:forEach var="membro" items="${projeto.membros}" varStatus="loop">
+                                                <li id="member-id-${membro.id}" class="list-group-item">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col-11">
+                                                                ${membro.nome}
+                                                            </div>                                                        
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </c:forEach>
+                                        </ul>
+                                        <div class="p-3">
+                                            <a href="/projetos/membros/projeto/${projeto.id}">Editar Membros</a>
+                                        <div>
+                                    </div>
+                                </div>
+                            </div>                            
+                        </div>
+
+
+                    </div>
+                </div>
             </form:form>
-             <div class="row">
+             <div class="row p-4">
                 <div class="col-12">
                     <button id="btn-salvar" class="btn btn-primary">Salvar</button>
                     <button id="btn-cancell" class="btn btn-secondary">Cancelar</button>                    

@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 
 <html>
     <head>
@@ -13,7 +14,7 @@
     <jsp:include page="../layout/navbar.jsp" />
     <body>
         <div class="row border rounded p-4 m-2">
-            <h5>Membros no projeto</h5> 
+            <h5>Membros do projeto: <a href="/projetos/projeto/${projeto.id}"><b><i> ${projeto.nome} </i></b></a></h5> 
             <ul id="member-project" class="list-group">
                 <c:forEach var="pMember" items="${projeto.membros}" varStatus="loop">
                     <li id="member-id-${pMember.id}" class="list-group-item">
