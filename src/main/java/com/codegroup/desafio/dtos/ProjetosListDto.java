@@ -6,6 +6,9 @@ import java.util.List;
 
 public class ProjetosListDto {
 
+    public ProjetosListDto() {
+    }
+
     public ProjetosListDto(String nome, List<Projeto> projetos) {
         this.nome = nome;
         this.projetos = projetos;
