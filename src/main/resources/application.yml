@@ -9,7 +9,7 @@ spring:
     driverClassName: org.postgresql.Driver
     url: jdbc:postgresql://127.0.0.1:5432/challenger
     username: postgres
-    password: qweasd123
+    password: postgres
   jpa:
     show-sql: true
     generate-ddl: true
