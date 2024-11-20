@@ -1,5 +1,6 @@
 package com.codegroup.desafio.controllers;
 
+import com.codegroup.desafio.dtos.ProjetoMembroDto;
 import com.codegroup.desafio.dtos.ProjetosListDto;
 import com.codegroup.desafio.helper.Helper;
 import com.codegroup.desafio.models.Projeto;
@@ -76,4 +77,22 @@ public class ProjetoController {
         return ResponseEntity.noContent().build();
     }
 
+
+    @GetMapping("/membros/projeto/{id}")
+    public ModelAndView getProjetoMembros(@PathVariable("id") final Long id, final ModelMap modelMap) {
+        this.projetoService.getProjectMemberData(id, modelMap);
+        return new ModelAndView("projetos/projetos-members", modelMap);
+    }
+
+    @PutMapping("/membros")
+    public ResponseEntity<Object> addMembro(@RequestBody final ProjetoMembroDto membro) {
+        this.projetoService.addMembro(membro);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/membros")
+    public ResponseEntity<Object> removeMembro(@RequestBody final ProjetoMembroDto membro) {
+        this.projetoService.removeMembro(membro);
+        return ResponseEntity.noContent().build();
+    }
 }

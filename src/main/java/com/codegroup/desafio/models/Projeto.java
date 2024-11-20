@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Projeto {
@@ -42,6 +43,9 @@ public class Projeto {
     @ManyToOne
     @JoinColumn(name="pessoa_id", nullable = false)
     private Pessoa gerente;
+
+    @OneToMany
+    private List<Pessoa> membros;
 
     public Long getId() {
         return id;
@@ -121,5 +125,13 @@ public class Projeto {
 
     public void setGerente(Pessoa gerente) {
         this.gerente = gerente;
+    }
+
+    public List<Pessoa> getMembros() {
+        return membros;
+    }
+
+    public void setMembros(List<Pessoa> membros) {
+        this.membros = membros;
     }
 }

@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
     List<Pessoa> findByGerente(boolean isGerente);
+
+    List<Pessoa> findByFuncionario(boolean isFuncionario);
 }

@@ -32,6 +32,7 @@
                                         <p class="card-text">${projeto.descricao}</p>
                                     </div>
                                     <div class="col-2 text-end">
+                                        <a href="<c:url value="/projetos/membros/projeto/${projeto.id}" />" class="btn btn-outline-secondary"><i class="bi bi-people"></i></span></a>
                                         <a href="<c:url value="/projetos/projeto/${projeto.id}" />" class="btn btn-outline-secondary"><span class="bi-pencil-square"></span></a>
                                         
                                         <c:if test="${projeto.status!='PLANEJADO' && projeto.status!='INICIADO' && projeto.status!='ANDAMENTO'}">
@@ -45,6 +46,6 @@
                 </div>                 
             </c:forEach>
         </div>
-        <script src="/static/controllers/list-projetos-controller.js"></script>
+        <script src="/static/controllers/projetos-list-controller.js"></script>
    </body>
 </html>

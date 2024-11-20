@@ -2,6 +2,7 @@ package com.codegroup.desafio.services;
 
 import com.codegroup.desafio.constants.Classificacao;
 import com.codegroup.desafio.constants.Status;
+import com.codegroup.desafio.dtos.ProjetoMembroDto;
 import com.codegroup.desafio.dtos.ProjetosListDto;
 import com.codegroup.desafio.helper.Helper;
 import com.codegroup.desafio.models.Pessoa;
@@ -32,7 +33,7 @@ public class ProjetoService {
         this.pessoaService = pessoaService;
     }
 
-    public Projeto getProject(final Long id) {
+    public Projeto getProjeto(final Long id) {
         return Optional.ofNullable(id)
                 .flatMap(this.projetoRepository::findById)
                 .orElse(new Projeto());
@@ -74,7 +75,7 @@ public class ProjetoService {
     }
 
     public void buildFormModel(final ModelMap model, final Long id) {
-        model.addAttribute(MODEL_PROJETO, this.getProject(id));
+        model.addAttribute(MODEL_PROJETO, this.getProjeto(id));
         model.addAttribute(MODEL_STATUS, this.getProjetoStatus());
         model.addAttribute(MODEL_RISCO, this.getProjetoClassificacao());
         model.addAttribute(MODEL_GERENTES, this.getPessoas());
@@ -92,5 +93,27 @@ public class ProjetoService {
         if (projeto.getStatus() != Status.PLANEJADO && projeto.getStatus() != Status.INICIADO && projeto.getStatus() != Status.ANDAMENTO) {
             this.projetoRepository.delete(projeto);
         }
+    }
+
+    public void getProjectMemberData(final Long id, final ModelMap modelMap) {
+        final List<Pessoa> pessoas = this.pessoaService.getAllFuncionarios();
+        final Projeto projeto = this.getProjeto(id);
+        projeto.getMembros().forEach(pessoas::remove);
+        modelMap.addAttribute("projeto", projeto);
+        modelMap.addAttribute("pessoas", pessoas);
+    }
+
+    public void addMembro(final ProjetoMembroDto membro) {
+        final Projeto projeto = this.projetoRepository.findById(membro.getProjetoId()).orElseThrow();
+        final Pessoa pessoa = this.pessoaService.getPessoa(membro.getId());
+        projeto.getMembros().add(pessoa);
+        this.projetoRepository.save(projeto);
+    }
+
+    public void removeMembro(final ProjetoMembroDto membro) {
+        final Projeto projeto = this.projetoRepository.findById(membro.getProjetoId()).orElseThrow();
+        final Pessoa pessoa = this.pessoaService.getPessoa(membro.getId());
+        projeto.getMembros().remove(pessoa);
+        this.projetoRepository.save(projeto);
     }
 }

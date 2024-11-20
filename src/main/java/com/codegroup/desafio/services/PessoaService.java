@@ -41,4 +41,8 @@ public class PessoaService {
         return this.pessoaRepository.findAll();
     }
 
+    public List<Pessoa> getAllFuncionarios() {
+        return this.pessoaRepository.findByFuncionario(true);
+    }
+
 }
