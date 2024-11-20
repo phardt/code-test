@@ -9,6 +9,9 @@
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/projetos">Projetos</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/projetos/projeto">Criar Novo Projeto</a>
+            </li>
         </ul>
         </div>
     </div>

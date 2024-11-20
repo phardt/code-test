@@ -23,7 +23,6 @@ public class PessoaController {
 
     @PostMapping("/add")
     public ResponseEntity<Pessoa> addPessoa(@RequestBody final PessoaDto pessoaDto) {
-        final Pessoa pessoaResponse = this.pessoaService.savePessoa(pessoaDto);
-        return ResponseEntity.ok(pessoaResponse);
+        return ResponseEntity.ok(this.pessoaService.savePessoa(pessoaDto));
     }
 }
