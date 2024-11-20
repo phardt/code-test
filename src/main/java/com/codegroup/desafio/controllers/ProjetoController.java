@@ -6,6 +6,7 @@ import com.codegroup.desafio.models.Projeto;
 import com.codegroup.desafio.services.ProjetoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -67,6 +68,12 @@ public class ProjetoController {
         final List<ProjetosListDto> allProjects = this.projetoService.getAllProjects();
         model.addAttribute("projetos", allProjects);
         return new ModelAndView("projetos/projetos-list", model);
+    }
+
+    @DeleteMapping("/projeto/{id}")
+    public ResponseEntity<Object> deleteProjeto(@PathVariable("id") final Long id) {
+        this.projetoService.deleteProjeto(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

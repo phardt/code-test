@@ -23,11 +23,6 @@ public class Pessoa {
     @Size(max = 100)
     private String nome;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dataNascimento;
-
-    private String cpf;
-
     private boolean funcionario;
 
     private boolean gerente;
@@ -46,22 +41,6 @@ public class Pessoa {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Date getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(Date dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
     }
 
     public boolean isFuncionario() {

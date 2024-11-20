@@ -8,6 +8,7 @@
         <link href='<c:url value="/static/node_modules/bootstrap-icons/font/bootstrap-icons.css"/>'
               rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="/static/node_modules/jquery/dist/jquery.min.js"></script>
     </head>
     <jsp:include page="../layout/navbar.jsp" />
     <body>
@@ -34,7 +35,7 @@
                                         <a href="<c:url value="/projetos/projeto/${projeto.id}" />" class="btn btn-outline-secondary"><span class="bi-pencil-square"></span></a>
                                         
                                         <c:if test="${projeto.status!='PLANEJADO' && projeto.status!='INICIADO' && projeto.status!='ANDAMENTO'}">
-                                            <a href="<c:url value="/projetos/projeto/${projeto.id}" />" class="btn btn-outline-danger"><span class="bi-trash"></span></a>                                            
+                                            <a href="#" class="btn btn-outline-danger" onClick="handleDelete(${projeto.id})"><span class="bi-trash"></span></a>
                                         </c:if>
                                     </div>
                                 </div>
@@ -44,5 +45,6 @@
                 </div>                 
             </c:forEach>
         </div>
+        <script src="/static/controllers/list-projetos-controller.js"></script>
    </body>
 </html>

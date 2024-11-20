@@ -7,7 +7,6 @@ import com.codegroup.desafio.helper.Helper;
 import com.codegroup.desafio.models.Pessoa;
 import com.codegroup.desafio.models.Projeto;
 import com.codegroup.desafio.repositories.ProjetoRepository;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
@@ -86,5 +85,12 @@ public class ProjetoService {
             projeto.setId(id);
             return this.projetoRepository.save(projeto);
         });
+    }
+
+    public void deleteProjeto(final Long id) {
+        final Projeto projeto = this.projetoRepository.findById(id).orElseThrow();
+        if (projeto.getStatus() != Status.PLANEJADO && projeto.getStatus() != Status.INICIADO && projeto.getStatus() != Status.ANDAMENTO) {
+            this.projetoRepository.delete(projeto);
+        }
     }
 }
