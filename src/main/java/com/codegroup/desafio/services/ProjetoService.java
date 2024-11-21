@@ -84,6 +84,7 @@ public class ProjetoService {
     public Projeto updateProjeto(final Long id, final Projeto projeto) {
         return this.projetoRepository.findById(id).map(item -> {
             projeto.setId(id);
+            projeto.setMembros(item.getMembros());
             return this.projetoRepository.save(projeto);
         }).orElseThrow();
     }
